@@ -8,13 +8,13 @@ cat << 'EOF' >> ~/.zshrc
 # تنظیمات رنگ برای هایلایت سینتکس
 ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
 typeset -A ZSH_HIGHLIGHT_STYLES
-ZSH_HIGHLIGHT_STYLES[command]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[builtin]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[function]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=magenta,bold'
-ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=yellow,bold'
-ZSH_HIGHLIGHT_STYLES[redirection]='fg=cyan,bold'
+ZSH_HIGHLIGHT_STYLES[command]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[builtin]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[function]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[command-substitution]='fg=green,bold'
+ZSH_HIGHLIGHT_STYLES[commandseparator]='fg=cyan,bold'
+ZSH_HIGHLIGHT_STYLES[redirection]='fg=magenta,bold'
 ZSH_HIGHLIGHT_STYLES[argument]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[single-quoted-argument]='fg=green'
 ZSH_HIGHLIGHT_STYLES[double-quoted-argument]='fg=green'
@@ -23,12 +23,12 @@ ZSH_HIGHLIGHT_STYLES[back-double-quoted-argument]='fg=cyan'
 ZSH_HIGHLIGHT_STYLES[assign]='fg=blue,bold'
 
 # تنظیم رنگ prompt
-PROMPT_COLOR="cyan"
+PROMPT_COLOR="green"
 PROMPT_SYMBOL="➜"
 
 # تنظیم prompt با رنگ‌های جدید
-PROMPT='%F{$PROMPT_COLOR}┌──(%B%F{red}%n%F{$PROMPT_COLOR}%b㉿%B%F{red}%m%F{$PROMPT_COLOR}%b)-[%B%F{blue}%~%F{$PROMPT_COLOR}%b]
-%F{$PROMPT_COLOR}└─%B%F{magenta}$PROMPT_SYMBOL%F{$PROMPT_COLOR}%b '
+PROMPT='%F{$PROMPT_COLOR}┌──(%B%F{cyan}%n%F{$PROMPT_COLOR}%b㉿%B%F{cyan}%m%F{$PROMPT_COLOR}%b)-[%B%F{yellow}%~%F{$PROMPT_COLOR}%b]
+%F{$PROMPT_COLOR}└─%B%F{green}$PROMPT_SYMBOL%F{$PROMPT_COLOR}%b '
 
 # اضافه کردن نمایش شاخه گیت با رنگ جدید
 autoload -Uz vcs_info
@@ -36,7 +36,7 @@ precmd_vcs_info() { vcs_info }
 precmd_functions+=( precmd_vcs_info )
 setopt prompt_subst
 RPROMPT='$vcs_info_msg_0_'
-zstyle ':vcs_info:git:*' formats '%F{yellow}(%b)%r%f'
+zstyle ':vcs_info:git:*' formats '%F{red}(%b)%r%f'
 zstyle ':vcs_info:*' enable git
 
 # فعال کردن هایلایت سینتکس
