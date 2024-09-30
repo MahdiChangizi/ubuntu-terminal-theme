@@ -1,5 +1,23 @@
 #!/bin/bash
 
+echo "شروع بازگرداندن تنظیمات به حالت اولیه..."
+
+# پشتیبان‌گیری از فایل فعلی .zshrc
+if [ -f ~/.zshrc ]; then
+    cp ~/.zshrc ~/.zshrc.backup
+    echo "پشتیبان‌گیری از فایل .zshrc انجام شد."
+fi
+
+# بازگرداندن فایل .zshrc به حالت اولیه
+cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc
+echo "فایل .zshrc به تنظیمات اولیه بازگردانده شد."
+
+# حذف پلاگین zsh-syntax-highlighting در صورت وجود
+if [ -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    rm -rf ~/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    echo "پلاگین zsh-syntax-highlighting حذف شد."
+fi
+
 echo "شروع بهبود تنظیمات رنگ ترمینال..."
 
 # اضافه کردن تنظیمات جدید به .zshrc
@@ -45,9 +63,12 @@ EOF
 
 echo "تنظیمات رنگ به .zshrc اضافه شد."
 
-# نصب پلاگین zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
-
-echo "پلاگین zsh-syntax-highlighting نصب شد."
+# نصب پلاگین zsh-syntax-highlighting در صورتی که وجود نداشته باشد
+if [ ! -d "${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting" ]; then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+    echo "پلاگین zsh-syntax-highlighting نصب شد."
+else
+    echo "پلاگین zsh-syntax-highlighting قبلاً نصب شده است."
+fi
 
 echo "بهبود تنظیمات رنگ کامل شد. لطفاً ترمینال را بسته و دوباره باز کنید."
